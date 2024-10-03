@@ -6,7 +6,7 @@ const randomNumber = () => {
         if (result %2 === 0)//even number 
         { resolve (result);
         } else {
-            reject (`Failed! Not an even numeber: ${result}`);
+            reject (`Failed! Not an even numeber: ${result} , try again`);
         }
     });
 };
@@ -25,7 +25,7 @@ const fetchAdviceById = (id) => {
     })
     .then((data) => {
         const advice = data.slip.advice;
-        document.getElementById('advice').innerText= `Advice (ID:${id}): ${advice}`;
+        document.getElementById('advice').innerText= `you got a ${id}, your advice: ${advice}`;
     })
     .catch((error) => {
         document.getElementById('advice').innerText = `Error fetching advice: ${error}`;
@@ -37,10 +37,9 @@ document.getElementById('fetchAdviceBtn')
 .addEventListener('click', () => {
     randomNumber()
     .then((evenNumber) =>{
-        console.log("Success! you rolled an even number, here is your advice:");
         fetchAdviceById(evenNumber);
     })
     .catch((error)=>{
-        console.log(error);
+        document.getElementById('advice').innerText = error;
     });
 });
