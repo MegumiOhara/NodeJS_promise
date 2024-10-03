@@ -25,7 +25,7 @@ const fetchAdviceById = (id) => {
     })
     .then((data) => {
         const advice = data.slip.advice;
-        document.getElementById('advice').innerText= `you got a ${id}, your advice: ${advice}`;
+        document.getElementById('advice').innerText= `You got a ${id}, your advice: ${advice}`;
     })
     .catch((error) => {
         document.getElementById('advice').innerText = `Error fetching advice: ${error}`;
