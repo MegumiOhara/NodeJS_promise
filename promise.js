@@ -25,18 +25,22 @@ const fetchAdviceById = (id) => {
     })
     .then((data) => {
         const advice = data.slip.advice;
-        console.log(`Advice (ID:${id}): ${advice}`);
+        document.getElementById('advice').innerText= `Advice (ID:${id}): ${advice}`;
     })
     .catch((error) => {
-        console.error("Error fetching advice", error)
+        document.getElementById('advice').innerText = `Error fetching advice: ${error}`;
     });
 };
 
-randomNumber()
-.then((evenNumber) =>{
-    console.log("Success! you rolled an even number, here is your advice:");
-    fetchAdviceById(evenNumber);
-})
-.catch((error)=>{
-    console.log(error);
-})
+
+document.getElementById('fetchAdviceBtn')
+.addEventListener('click', () => {
+    randomNumber()
+    .then((evenNumber) =>{
+        console.log("Success! you rolled an even number, here is your advice:");
+        fetchAdviceById(evenNumber);
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
+});
