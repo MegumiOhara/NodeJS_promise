@@ -4,20 +4,14 @@ const randomNumber = () => {
         let result = Math.floor(Math.random()*10)+1; 
         //Generates number between 1 and 10
         if (result %2 === 0)//even number 
-        { resolve (`Success! You rolled an even number : ${result}`);
+        { resolve (result);
         } else {
             reject (`Failed! Not an even numeber: ${result}`);
         }
     });
 };
 
-randomNumber()
-.then((message) =>{
-    console.log(message);
-})
-.catch((error)=>{
-    console.log(error);
-})
+
 
 //Task 2 - fetching data from an API 
 
@@ -38,4 +32,11 @@ const fetchAdviceById = (id) => {
     });
 };
 
-fetchAdviceById(12);
+randomNumber()
+.then((evenNumber) =>{
+    console.log("Success! you rolled an even number, here is your advice:");
+    fetchAdviceById(evenNumber);
+})
+.catch((error)=>{
+    console.log(error);
+})
