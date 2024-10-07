@@ -32,14 +32,13 @@ const fetchAdviceById = (id) => {
     });
 };
 
-
+//Task 1.2 refactor the function to use async/away 
 document.getElementById('fetchAdviceBtn')
-.addEventListener('click', () => {
-    randomNumber()
-    .then((evenNumber) =>{
-        fetchAdviceById(evenNumber);
-    })
-    .catch((error)=>{
-        document.getElementById('advice').innerText = error;
-    });
+.addEventListener('click', async () => {
+    try {
+        const evenNumber = await randomNumber();
+        await fetchAdviceById(evenNumber);   
+    } catch (error) {
+        document.getElementById('advice').innerText = errorö
+    }
 });
