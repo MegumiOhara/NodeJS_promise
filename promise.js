@@ -15,21 +15,33 @@ const randomNumber = () => {
 
 //Task 2 - fetching data from an API 
 
-const fetchAdviceById = (id) => {
-    fetch(`https://api.adviceslip.com/advice/${id}`)
-    .then((response) => {
-        if(!response.ok){
-            throw new Error("Network response was not ok");
-        }
-        return response.json();
-    })
-    .then((data) => {
+//const fetchAdviceById = (id) => {
+//    fetch(`https://api.adviceslip.com/advice/${id}`)
+//    .then((response) => {
+//        if(!response.ok){
+//            throw new Error("Network response was not ok");
+//        }
+//        return response.json();
+//    })
+//    .then((data) => {
+//        const advice = data.slip.advice;
+//        document.getElementById('advice').innerText= `You got a ${id}, your advice: ${advice}`;
+//    })
+//    .catch((error) => {
+//        document.getElementById('advice').innerText = `Error fetching advice: ${error}`;
+//    });
+//};
+
+// Task 2.2 Fetching data from API with async/await
+const fetchAdviceById = async (id) => {
+    try {
+        const response = await fetch(`https://api.adviceslip.com/advice/${id}`)
+        const data = await response.json();
         const advice = data.slip.advice;
         document.getElementById('advice').innerText= `You got a ${id}, your advice: ${advice}`;
-    })
-    .catch((error) => {
+    } catch (error) {
         document.getElementById('advice').innerText = `Error fetching advice: ${error}`;
-    });
+    }
 };
 
 //Task 1.2 refactor the function to use async/away 
@@ -39,6 +51,6 @@ document.getElementById('fetchAdviceBtn')
         const evenNumber = await randomNumber();
         await fetchAdviceById(evenNumber);   
     } catch (error) {
-        document.getElementById('advice').innerText = errorö
+        document.getElementById('advice').innerText = error;
     }
 });
